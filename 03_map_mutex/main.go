@@ -21,10 +21,10 @@ func main() {
 	start := time.Now()
 
 	wg.Add(goroutines)
-	for g := 0; g < goroutines; g++ {
+	for g := range goroutines {
 		go func(g int) {
 			defer wg.Done()
-			for i := 0; i < perG; i++ {
+			for i := range perG {
 				key := g*perG + i
 				s.mu.Lock()
 				s.m[key] = i
